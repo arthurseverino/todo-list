@@ -71,11 +71,23 @@ body {
 }
 
 #task-list-container {
-  border: 1px solid black;
-  height: 5%;
+  height: 7%;
   gap: 0.5rem;
   display: flex;
+  /* flex-wrap: wrap; */
   justify-content: space-between;
+  border-radius: 1.2rem;
+}
+#task-list-container:hover {
+  background-color: grey;
+}
+
+#task-div {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 0.5rem;
 }
 
 #task-button {
@@ -90,7 +102,16 @@ body {
 
 #delete-btn {
   background-color: #ff9c9c;
-  margin: 1rem 1rem;
+  margin: 1rem 0.1rem;
+  height: 50%;
+  width: 4rem;
+}
+
+#edit-btn {
+  background-color: yellow;
+  margin: 1rem 0.1rem;
+  height: 50%;
+  width: 4rem;
 }
 
 button {
@@ -99,6 +120,62 @@ button {
   height: 5%;
 }
 
-button:hover {
+button:hover,
+button:focus {
   filter: brightness(90%);
+  cursor:pointer;
 }
+
+#task-modal {
+  display: none;
+  flex-direction: column;
+  background-color: navajowhite;
+  border-radius: 1rem;
+  border: 1px solid black;
+  width: 60%;
+  height: 60%;
+  padding: 2rem;
+  position: fixed;
+  left: 30%;
+  top: 20%;
+  font-weight: 700;
+}
+
+/* you have to flex the form too */
+#my-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#task-modal-heading {
+  text-align: center;
+  height: 20%;
+  font-size: 2rem;
+}
+
+#project-modal {
+  display: none;
+}
+
+#close-task-modal-btn {
+  background-color: #ff9c9c;
+  margin-top: 4rem;
+  height: 2rem;
+}
+
+#submit-task-btn {
+  background-color: #9fff9c;
+  height: 2rem;
+}
+
+#label-date {
+  margin-top: 2rem;
+}
+
+/*
+255,222,173,0.9
+dialog::backdrop{
+  background-color: (255,255,255,0.9);
+}
+*/

@@ -3,7 +3,7 @@
 add localstorage to make visualization testing easier
 the default when opened should show inbox 
 
-A button that says + Add Project / + Add Task placed right after the last task / project.
+A button that says + Add Project / + Add Task placed right before the first task / project.
 When clicked, a modal pops up with an x on the top-right and an add button on the bottom just like library.
 
 when you add a task, you add the description of the task and date its due
@@ -28,4 +28,32 @@ currently and change the green add button to a yellow "edit"
 
 everything in sidebar is a button
 
+how to make items in background unclickable when showing modal
+
+use dialog for project Modal
+
+how to get input from date type 
+
+.value to get value from input
+
 */
+
+import handleSubmit from './handleSubmit.js';
+
+const submitTaskBtn = document.querySelector('#submit-task-btn');
+const closeTaskModal = document.querySelector('#close-task-modal-btn');
+const addTaskBtn = document.querySelector('#task-button');
+const taskModal = document.querySelector('#task-modal');
+
+addTaskBtn.addEventListener('click', () => {
+  taskModal.style.display = 'flex';
+});
+
+closeTaskModal.addEventListener('click', () => {
+  taskModal.style.display = 'none';
+});
+
+submitTaskBtn.addEventListener('click', () => {
+  taskModal.style.display = 'none';
+  handleSubmit;
+});

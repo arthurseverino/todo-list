@@ -29,20 +29,42 @@
         <div id="task-container-heading">Inbox</div>
         <button id="task-button">+ Add Task</button>
         <div id="task-list-container">
-          Task 1
-          <button id="delete-btn">Delete</button
-          ><!-- Append tasks here-->
+          <div id="task-div">
+            Task 1
+            <div id="date">Date</div>
+          </div>
+          <button id="edit-btn">Edit</button>
+          <button id="delete-btn">Delete</button>
         </div>
       </div>
+
+      <!-- modal stuff here -->
+
+      <div id="task-modal">
+        <div id="task-modal-heading">Add New Task</div>
+        <form id="my-form">
+          <label for="task-name"> New Task: </label>
+          <input
+            type="text"
+            placeholder=" Take out the trash..."
+            id="task-name"
+            required
+          />
+          <label for="date" id="label-date"> Due Date: </label>
+          <input type="date" id="date" required />
+          <button type="button" id="close-task-modal-btn">Close</button>
+          <button type="submit" id="submit-task-btn">Submit</button>
+        </form>
+      </div>
+      <dialog id="project-modal">
+        <div id="project-modal-heading">Enter New Project Name</div>
+        <input
+          type="text"
+          placeholder=" My Project..."
+          id="project-name"
+          required
+        />
+      </dialog>
     </div>
-
-    <!-- modal stuff here, encapsulate in divs? -->
-    <dialog id="task-modal">
-      <form></form>
-    </dialog>
-
-    <dialog id="project-modal">
-      <form></form>
-    </dialog>
   </body>
 </html>
