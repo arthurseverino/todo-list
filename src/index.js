@@ -33,6 +33,7 @@ how to make items in background unclickable when showing modal
 use dialog for project Modal
 
 how to get input from date type 
+how to remove projects? ideally a button that shows up on hover, you can document.createElement one 
 
 .value to get value from input
 
