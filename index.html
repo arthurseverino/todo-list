@@ -7,38 +7,61 @@
     <title>Todo List</title>
   <script defer src="main.js"></script></head>
   <body>
+    <div id="heading-container">
+      <h1>Todo List</h1>
+    </div>
     <div id="main-container">
-      <div id="heading-container">Todo List</div>
       <div id="sidebar">
-        <div id="inbox">Inbox</div>
-        <div id="today">Today</div>
-        <div id="this-week">This week</div>
-        <div id="projects">
-          Projects
-          <div id="add-project-btn">
-            <button type="button">+ Add Project</button>
-          </div>
+        <button id="inbox">Inbox</button>
+        <button id="today">Today</button>
+        <button id="this-week">This week</button>
+
+        <div id="projects-container">
+          <div id="project-container-heading">Projects</div>
+          <button id="project-button">+ Add Project</button>
+          <button id="project-list-container">
+            Project 1<!-- Append projects here-->
+          </button>
         </div>
       </div>
+
       <div id="task-container">
-        <div id="task-container-heading">Inbox-Test</div>
-        <div id="tasks-list"></div>
-        <div id="add-task-btn">+ Add Task</div>
+        <div id="task-container-heading">Inbox</div>
+        <button id="task-button">+ Add Task</button>
+        <div id="task-list-container">
+          <div id="task-div">
+            Task 1
+            <div id="date">Date</div>
+          </div>
+          <button id="edit-btn">Edit</button>
+          <button id="delete-btn">Delete</button>
+        </div>
       </div>
     </div>
 
-    <!-- modal stuff here-->
-
-    <dialog id = "task-modal">
+    <!-- modal stuff here -->
+    <dialog id="task-modal">
       <form>
+        <input
+          type="text"
+          placeholder=" Take out the trash..."
+          id="task-name"
+          required
+        />
+        <input type="date" id="date" />
+        <button type="button" id="close-task-modal-btn">X</button>
+        <button type="submit" id="submit-btn">Submit</button>
       </form>
     </dialog>
 
-    <dialog id = "project-modal">
-      <form>
-      </form>
-    </dialog>
-
-    
+    <div id="project-modal">
+      <div id="project-modal-heading">Enter New Project Name</div>
+      <input
+        type="text"
+        placeholder=" My Project..."
+        id="project-name"
+        required
+      />
+    </div>
   </body>
 </html>
