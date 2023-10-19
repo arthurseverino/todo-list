@@ -37,31 +37,34 @@
           <button id="delete-btn">Delete</button>
         </div>
       </div>
-    </div>
 
-    <!-- modal stuff here -->
-    <dialog id="task-modal">
-      <form>
+      <!-- modal stuff here -->
+
+      <div id="task-modal">
+        <div id="task-modal-heading">Add New Task</div>
+        <form id="my-form">
+          <label for="task-name"> New Task: </label>
+          <input
+            type="text"
+            placeholder=" Take out the trash..."
+            id="task-name"
+            required
+          />
+          <label for="date" id="label-date"> Due Date: </label>
+          <input type="date" id="date" required />
+          <button type="button" id="close-task-modal-btn">Close</button>
+          <button type="submit" id="submit-task-btn">Submit</button>
+        </form>
+      </div>
+      <dialog id="project-modal">
+        <div id="project-modal-heading">Enter New Project Name</div>
         <input
           type="text"
-          placeholder=" Take out the trash..."
-          id="task-name"
+          placeholder=" My Project..."
+          id="project-name"
           required
         />
-        <input type="date" id="date" />
-        <button type="button" id="close-task-modal-btn">X</button>
-        <button type="submit" id="submit-btn">Submit</button>
-      </form>
-    </dialog>
-
-    <div id="project-modal">
-      <div id="project-modal-heading">Enter New Project Name</div>
-      <input
-        type="text"
-        placeholder=" My Project..."
-        id="project-name"
-        required
-      />
+      </dialog>
     </div>
   </body>
 </html>
