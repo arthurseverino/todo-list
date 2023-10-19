@@ -3,9 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Todo List</title>
   <script defer src="main.js"></script></head>
   <body>
-    <div id="main-container">Testing</div>
+    <div id="main-container">
+      <div id="heading-container">Todo List</div>
+      <div id="sidebar">
+        <div id="inbox">Inbox</div>
+        <div id="today">Today</div>
+        <div id="this-week">This week</div>
+        <div id="projects">
+          Projects
+          <div id="add-project-btn">
+            <button type="button">+ Add Project</button>
+          </div>
+        </div>
+      </div>
+      <div id="task-container">
+        <div id="task-container-heading">Inbox-Test</div>
+        <div id="tasks-list"></div>
+        <div id="add-task-btn">+ Add Task</div>
+      </div>
+    </div>
+
+    <!-- modal stuff here-->
+
+    <dialog id = "task-modal">
+      <form>
+      </form>
+    </dialog>
+
+    <dialog id = "project-modal">
+      <form>
+      </form>
+    </dialog>
+
+    
   </body>
 </html>
