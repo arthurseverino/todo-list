@@ -12,6 +12,8 @@ export default function handleSubmit() {
   // you should populate an array of task nodes
   let inboxTasks = [];
 
+  //Create task-div
+
   const newTask = document.createElement('div');
   newTask.classList.add('task-div');
 
@@ -46,6 +48,8 @@ export default function handleSubmit() {
   right.appendChild(deleteBtn);
 
   newTask.appendChild(right);
+
+  //append to task list container
 
   taskListContainer.appendChild(newTask);
 }

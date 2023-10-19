@@ -35,8 +35,9 @@ use dialog for projectmodal display
 keep all query selects in DOMStuff file
 you have to import that file into every file then 
 
-how to remove projects? ideally a button that shows up on
-// hover, you can document.createElement one 
+try adding an overlay
+
+how to remove projects? ideally a button that shows up on hover, you can document.createElement one 
 
 what do you want to store in localstorage? the arrays of tasks and array of projects
 and array of tasks in inbox, all arrays basically
@@ -68,9 +69,8 @@ myForm.addEventListener('submit', (event) => {
   handleSubmit();
 });
 
-//when you click on edit it opens form but shouldn't
-//but it doesn't append,
-
+//when you click on edit it opens a new form 
+//but it doesn't append
 closeTaskModal.addEventListener('click', () => {
   editModal.style.display = 'flex';
   handleEdit();
