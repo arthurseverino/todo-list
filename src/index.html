@@ -3,9 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Todo List</title>
   </head>
   <body>
-    <div id="main-container">Testing</div>
+    <div id="heading-container">
+      <h1>Todo List</h1>
+    </div>
+    <div id="main-container">
+      <div id="sidebar">
+        <button id="inbox">Inbox</button>
+        <button id="today">Today</button>
+        <button id="this-week">This week</button>
+
+        <div id="projects-container">
+          <div id="project-container-heading">Projects</div>
+          <button id="project-button">+ Add Project</button>
+          <button id="project-list-container">
+            Project 1<!-- Append projects here-->
+          </button>
+        </div>
+      </div>
+
+      <div id="task-container">
+        <div id="task-container-heading">Inbox</div>
+        <button id="task-button">+ Add Task</button>
+        <div id="task-list-container">
+          Task 1
+          <button id="delete-btn">Delete</button
+          ><!-- Append tasks here-->
+        </div>
+      </div>
+    </div>
+
+    <!-- modal stuff here, encapsulate in divs? -->
+    <dialog id="task-modal">
+      <form></form>
+    </dialog>
+
+    <dialog id="project-modal">
+      <form></form>
+    </dialog>
   </body>
 </html>
