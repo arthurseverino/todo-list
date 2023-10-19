@@ -79,6 +79,7 @@ body {
   justify-content: flex-start;
   align-items: center;
   font-size: 1.5rem;
+  font-weight: 700;
 }
 
 #task-button {
@@ -144,9 +145,6 @@ button:focus {
   cursor: pointer;
 }
 
-
-
-
 /* modal stuff here */
 
 #task-modal,
@@ -185,7 +183,7 @@ button:focus {
 }
 
 #close-task-modal-btn,
-#close-edit-modal-btn{
+#close-edit-modal-btn {
   background-color: #ff9c9c;
   margin-top: 3rem;
   height: 2rem;

@@ -75,4 +75,3 @@ closeTaskModal.addEventListener('click', () => {
   editModal.style.display = 'flex';
   handleEdit();
 });
-

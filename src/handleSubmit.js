@@ -15,24 +15,37 @@ export default function handleSubmit() {
   const newTask = document.createElement('div');
   newTask.classList.add('task-div');
 
+  // left
+
+  const left = document.createElement('div');
+  left.classList.add('left');
+
   const taskText = document.createElement('div');
   taskText.textContent = `Task: ${task}`;
-  newTask.appendChild(taskText);
+  left.appendChild(taskText);
 
   const dateDiv = document.createElement('div');
   dateDiv.textContent = `Due Date: ${month}/${day}/${year}`;
-  newTask.appendChild(dateDiv);
+  left.appendChild(dateDiv);
+
+  newTask.appendChild(left);
+
+  // right
+
+  const right = document.createElement('div');
+  right.classList.add('right');
 
   const editBtn = document.createElement('button');
   editBtn.textContent = 'Edit';
   editBtn.classList.add('edit-btn');
-  newTask.appendChild(editBtn);
+  right.appendChild(editBtn);
 
   const deleteBtn = document.createElement('button');
   deleteBtn.textContent = 'Delete';
   deleteBtn.classList.add('delete-btn');
-  newTask.appendChild(deleteBtn);
+  right.appendChild(deleteBtn);
+
+  newTask.appendChild(right);
 
   taskListContainer.appendChild(newTask);
-
 }
