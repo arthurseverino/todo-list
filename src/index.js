@@ -30,23 +30,31 @@ everything in sidebar is a button
 
 how to make items in background unclickable when showing modal
 
-use dialog for project Modal
+use dialog for projectmodal display
 
-how to get input from date type 
-how to remove projects? ideally a button that shows up on hover, you can document.createElement one 
+keep all query selects in DOMStuff file
+you have to import that file into every file then 
 
-.value to get value from input
+how to remove projects? ideally a button that shows up on
+// hover, you can document.createElement one 
 
+what do you want to store in localstorage? the arrays of tasks and array of projects
+and array of tasks in inbox, all arrays basically
+//  localStorage.setItem(key, value);
 */
 
 import handleSubmit from './handleSubmit.js';
+import handleEdit from './handleEdit.js';
+import { format } from 'date-fns';
 
-const submitTaskBtn = document.querySelector('#submit-task-btn');
+const myForm = document.querySelector('#my-form');
 const closeTaskModal = document.querySelector('#close-task-modal-btn');
 const addTaskBtn = document.querySelector('#task-button');
 const taskModal = document.querySelector('#task-modal');
+const editBtn = document.querySelector('.edit-btn');
 
 addTaskBtn.addEventListener('click', () => {
+  myForm.reset();
   taskModal.style.display = 'flex';
 });
 
@@ -54,7 +62,17 @@ closeTaskModal.addEventListener('click', () => {
   taskModal.style.display = 'none';
 });
 
-submitTaskBtn.addEventListener('click', () => {
+myForm.addEventListener('submit', (event) => {
   taskModal.style.display = 'none';
-  handleSubmit;
+  event.preventDefault();
+  handleSubmit();
 });
+
+//when you click on edit it opens form but shouldn't
+//but it doesn't append,
+
+closeTaskModal.addEventListener('click', () => {
+  editModal.style.display = 'flex';
+  handleEdit();
+});
+
