@@ -17,10 +17,6 @@ function formatDate(date) {
   let month = newDate.getMonth() + 1;
   let year = newDate.getFullYear();
 
-  console.log('day: ' + day);
-  console.log('month: ' + month);
-  console.log('year: ' + year);
-
   if (isNaN(month) && isNaN(day) && isNaN(year)) {
     return `No date`;
   } else {
@@ -69,19 +65,18 @@ export function createTaskDiv(taskClass) {
   editBtn.textContent = 'Edit';
   editBtn.addEventListener('click', () => {
     editModal.style.display = 'flex';
-    // does this keep current value
-    // document.querySelector('#edit-task').value = taskText.textContent;
-    // document.querySelector('#edit-date-modal').value = date;
+    // this keeps current value in form, needed for edit 
+    document.querySelector('#edit-task').value = taskText.textContent;
   });
 
   myEditForm.addEventListener('submit', (event) => {
+    console.log('edit form submitted');
     event.preventDefault();
-    taskText.textContent = document.querySelector('#edit-task').value;
+    taskClass.taskText = document.querySelector('#edit-task').value;
     const date = document.querySelector('#edit-date-modal').value;
-    dateDiv.textContent = formatDate(date);
+    taskClass.taskDate = formatDate(date);
     editModal.style.display = 'none';
     updateDisplay();
-    // myEditForm.reset()
   });
 
   deleteBtn.textContent = 'Delete';
@@ -104,7 +99,4 @@ export function createTaskDiv(taskClass) {
   newInboxTask.appendChild(left);
   newInboxTask.appendChild(right);
   taskListContainer.appendChild(newInboxTask);
-
-  console.log('taskText.textContent: ' + taskText.textContent);
-  console.log('dateDiv.textContent: ' + dateDiv.textContent);
 }

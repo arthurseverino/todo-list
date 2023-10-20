@@ -33,7 +33,6 @@ import {addTaskBtn, closeTaskModal, myForm, taskModal, editBtn,
   editModal, myEditForm, closeEditTaskModal, deleteBtn, taskListContainer } from './DOMStuff.js';
 
 addTaskBtn.addEventListener('click', () => {
-  myForm.reset();
   taskModal.style.display = 'flex';
 });
 
@@ -41,6 +40,7 @@ myForm.addEventListener('submit', (event) => {
   addTaskToContainer();
   taskModal.style.display = 'none';
   event.preventDefault();
+  myForm.reset();
 });
 
 closeTaskModal.addEventListener('click', () => {
