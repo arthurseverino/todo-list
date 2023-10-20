@@ -8,6 +8,8 @@ let inboxTasks = [];
 
 //shhould be a class of HTML elements, you can access the text content and everything from outside
 //try to build dom elements with the class
+
+
 class Task {
   constructor(taskText, taskDueDate, editBtn, deleteBtn) {
     this.taskText = taskText;
