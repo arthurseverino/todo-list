@@ -1,9 +1,10 @@
-// an array of task-divs
-export default function updateDisplay(taskArray) {
-  const taskListContainer = document.querySelector('#task-list-container');
+import { inboxTasks } from './handleSubmit';
+import { createTaskDiv } from './handleSubmit';
+const taskListContainer = document.querySelector('#task-list-container');
+
+export default function updateDisplay() {
   taskListContainer.textContent = '';
-  for (const taskDiv of taskArray) {
-    //createTaskDiv();
-    taskListContainer.appendChild(taskDiv);
+  for (const taskClass of inboxTasks) {
+    createTaskDiv(taskClass);
   }
 }

@@ -1,73 +1,93 @@
 import updateDisplay from './updateDisplay';
-import { editModal } from './DOMStuff.js';
+import { editModal, myEditForm } from './DOMStuff.js';
+const taskListContainer = document.querySelector('#task-list-container');
 
-//if you have this list inside the function it resets everytime its called, populate it with task-div elements
+export let inboxTasks = [];
 
-//can i build the DOM elements with a class
-let inboxTasks = [];
-
-//shhould be a class of HTML elements, you can access the text content and everything from outside
-//try to build dom elements with the class
-
-
-class Task {
-  constructor(taskText, taskDueDate, editBtn, deleteBtn) {
+export class Task {
+  constructor(taskText, taskDueDate) {
     this.taskText = taskText;
     this.taskDate = taskDueDate;
-    this.editBtn = editBtn;
-    this.deleteBtn = deleteBtn;
   }
 }
 
-export default function handleSubmit() {
-  let newInboxTask = createTaskDiv();
-  inboxTasks.push(newInboxTask);
-  console.log('inboxTasks: ' + inboxTasks);
-  updateDisplay(inboxTasks);
-}
-
-function createTaskDiv() {
-  //you have to keep task in here or else it will be empty
-  const task = document.querySelector('#task').value;
-  const date = document.querySelector('#date-modal');
-  const taskListContainer = document.querySelector('#task-list-container');
-  let newDate = new Date(date.value);
-  let day = newDate.getDay();
+function formatDate(date) {
+  let newDate = new Date(date);
+  let day = newDate.getDate() + 1;
   let month = newDate.getMonth() + 1;
   let year = newDate.getFullYear();
 
-  const newInboxTask = document.createElement('div');
+  console.log('day: ' + day);
+  console.log('month: ' + month);
+  console.log('year: ' + year);
 
-  // left
+  if (isNaN(month) && isNaN(day) && isNaN(year)) {
+    return `No date`;
+  } else {
+    return `Task due: ${month}/${day}/${year}`;
+  }
+}
+
+export default function addTaskToContainer() {
+  // inboxTasks is an array of classes
+  // so you want to create the class first, then dynamically create DOM Elements based off of those class values
+  const newTask = getTaskFromInput();
+  inboxTasks.push(newTask);
+  updateDisplay();
+}
+
+//so here you're creating the new task with the values from form
+function getTaskFromInput() {
+  const task = document.querySelector('#task').value;
+  const date = document.querySelector('#date-modal').value;
+  const formattedDate = formatDate(date);
+  return new Task(task, formattedDate);
+}
+
+// no query selectors in here that's important, you're basing all the info off of a class
+// the class should be created first
+export function createTaskDiv(taskClass) {
+  const newInboxTask = document.createElement('div');
   const left = document.createElement('div');
   const taskText = document.createElement('div');
-  if (task === '') {
-    taskText.textContent = `Empty Task`;
-  } else {
-    taskText.textContent = `${task}`;
-  }
   const dateDiv = document.createElement('div');
-  if (isNaN(month) && isNaN(day) && isNaN(year)) {
-    dateDiv.textContent = `No date`;
-  } else {
-    dateDiv.textContent = `Due Date: ${month}/${day}/${year}`;
-  }
-  left.appendChild(taskText);
-  left.appendChild(dateDiv);
-
-  // right
   const right = document.createElement('div');
   const editBtn = document.createElement('button');
+  const deleteBtn = document.createElement('button');
+
+  if (taskClass.taskText === '') {
+    taskText.textContent = `Empty Task`;
+  } else {
+    taskText.textContent = taskClass.taskText;
+  }
+  if (taskClass.taskDate === `No date`) {
+    dateDiv.textContent = `No date`;
+  } else {
+    dateDiv.textContent = taskClass.taskDate;
+  }
+
   editBtn.textContent = 'Edit';
   editBtn.addEventListener('click', () => {
     editModal.style.display = 'flex';
+    // does this keep current value
+    // document.querySelector('#edit-task').value = taskText.textContent;
+    // document.querySelector('#edit-date-modal').value = date;
   });
 
-  const deleteBtn = document.createElement('button');
+  myEditForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    taskText.textContent = document.querySelector('#edit-task').value;
+    const date = document.querySelector('#edit-date-modal').value;
+    dateDiv.textContent = formatDate(date);
+    editModal.style.display = 'none';
+    updateDisplay();
+    // myEditForm.reset()
+  });
+
   deleteBtn.textContent = 'Delete';
   deleteBtn.addEventListener('click', () => {
-    inboxTasks.splice(inboxTasks.indexOf(task), 1);
-    updateDisplay(inboxTasks);
+    inboxTasks.splice(inboxTasks.indexOf(taskClass), 1);
+    updateDisplay();
   });
 
   left.classList.add('left');
@@ -77,13 +97,14 @@ function createTaskDiv() {
   editBtn.classList.add('edit-btn');
   deleteBtn.classList.add('delete-btn');
 
+  left.appendChild(taskText);
+  left.appendChild(dateDiv);
   right.appendChild(editBtn);
   right.appendChild(deleteBtn);
   newInboxTask.appendChild(left);
   newInboxTask.appendChild(right);
+  taskListContainer.appendChild(newInboxTask);
 
-  console.log('task: ' + taskText.textContent);
+  console.log('taskText.textContent: ' + taskText.textContent);
   console.log('dateDiv.textContent: ' + dateDiv.textContent);
-
-  return newInboxTask;
 }
