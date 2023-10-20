@@ -1,6 +1,5 @@
 import updateDisplay from './updateDisplay';
-import { editModal, myEditForm } from './DOMStuff.js';
-const taskListContainer = document.querySelector('#task-list-container');
+import { editModal, myEditForm, taskListContainer } from './DOMStuff.js';
 
 export let inboxTasks = [];
 

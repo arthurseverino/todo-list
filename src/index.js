@@ -18,7 +18,6 @@ you can edit task by reopening a new form but with the saved text in it from its
 everything in sidebar is a button
 
 use dialog for projectmodal display
-
 try adding an overlay
 
 how to remove projects? ideally a button that shows up on hover, you can document.createElement one  
