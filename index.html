@@ -16,6 +16,8 @@
         <button id="today">Today</button>
         <button id="this-week">This week</button>
 
+        <!-- projects stuff here -->
+
         <div id="projects-container">
           <div id="project-container-heading">Projects</div>
           <button id="project-button">+ Add Project</button>
@@ -26,14 +28,21 @@
         </div>
       </div>
 
+
+
+
+
+
+      <!-- task stuff here -->
+
       <div id="task-container">
         <div id="task-container-heading">Inbox</div>
         <button id="task-button">+ Add Task</button>
         <div id="task-list-container">
           <div class="task-div">
             <div class="left">
-              <div class="task-text">Go to the gym </div>
-              <div class="date">Due Date: 01/13/2000</div>
+              <div class="task-text">Go to the gym</div>
+              <div class="date">Due Date: 1/13/2000</div>
             </div>
             <div class="right">
               <button class="edit-btn">Edit</button>
@@ -42,6 +51,13 @@
           </div>
         </div>
       </div>
+
+
+
+
+
+
+
 
       <!-- modal stuff here -->
 
@@ -59,7 +75,12 @@
 
       <dialog id="project-modal">
         <div id="project-modal-heading">Enter New Project Name</div>
-        <input type="text" placeholder=" My Project..." id="project-name" required/>
+        <input
+          type="text"
+          placeholder=" My Project..."
+          id="project-name"
+          required
+        />
       </dialog>
 
       <div id="edit-modal">
@@ -67,14 +88,13 @@
         <form id="my-edit-form">
           <label for="edit-task"> Edit your task below: </label>
           <!-- the value here is equal to this.task.value, if can't no biggy -->
-          <input type="text" value = "" id="edit-task" />
+          <input type="text" value="" id="edit-task" />
           <label for="edit-date-modal" id="edit-label-date"> Due Date: </label>
           <input type="date" id="edit-date-modal" />
           <button type="button" id="close-edit-modal-btn">Close</button>
           <button type="submit" id="submit-edit-btn">Confirm Changes</button>
         </form>
       </div>
-
     </div>
   </body>
 </html>
