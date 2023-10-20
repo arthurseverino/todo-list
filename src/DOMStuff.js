@@ -7,3 +7,4 @@ export const editModal = document.querySelector('#edit-modal');
 export const myEditForm = document.querySelector('#my-edit-form');
 export const closeEditTaskModal = document.querySelector('#close-edit-modal-btn');
 export const deleteBtn = document.querySelector('.delete-btn');
+export const taskListContainer = document.querySelector('#task-list-container');

@@ -31,11 +31,8 @@ localStorage.setItem(key, value);
 
 import handleSubmit from './handleSubmit.js';
 import handleEdit from './handleEdit.js';
-import handleDelete from './handleDelete.js';
-import Task from './Task.js';
 import {addTaskBtn, closeTaskModal, myForm, taskModal, editBtn, 
-  editModal, myEditForm, closeEditTaskModal, deleteBtn } from './DOMStuff.js';
-
+  editModal, myEditForm, closeEditTaskModal, deleteBtn, taskListContainer } from './DOMStuff.js';
 
 
 addTaskBtn.addEventListener('click', () => {
@@ -53,11 +50,6 @@ closeTaskModal.addEventListener('click', () => {
   taskModal.style.display = 'none';
 });
 
-//edit modal, does form reset here
-editBtn.addEventListener('click', () => {
-  editModal.style.display = 'flex';
-});
-
 myEditForm.addEventListener('submit', (event) => {
   editModal.style.display = 'none';
   event.preventDefault();
@@ -68,6 +60,3 @@ closeEditTaskModal.addEventListener('click', () => {
   editModal.style.display = 'none';
 });
 
-deleteBtn.addEventListener('click', () => {
-  handleDelete();
-});
