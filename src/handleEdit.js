@@ -1,12 +1,11 @@
-  // you just create a new left div for the left side of the task-div
-  // with a new date and new task-text
-  const taskDiv = document.querySelector('.task-div');
-  const editTask = document.querySelector('#edit-task').value;
-  const date = document.querySelector('#edit-date-modal');
-
+// you just create a new left div for the left side of the task-div
+// with a new date and new task-text
+// no, create a whole new text-div
+const taskDiv = document.querySelector('.task-div');
+const editTask = document.querySelector('#edit-task').value;
+const date = document.querySelector('#edit-date-modal');
 
 export default function handleEdit() {
-
   let newDate = new Date(date.value);
   let day = newDate.getDay();
   let month = newDate.getMonth() + 1;
@@ -29,6 +28,6 @@ export default function handleEdit() {
   left.appendChild(dateDiv);
 
   // should be this.taskDiv
-  // which taskDiv does it append to? 
+  // which taskDiv does it append to?
   taskDiv.appendChild(left);
 }

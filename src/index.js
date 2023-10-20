@@ -38,7 +38,6 @@ import {addTaskBtn, closeTaskModal, myForm, taskModal, editBtn,
 
 
 
-
 addTaskBtn.addEventListener('click', () => {
   myForm.reset();
   taskModal.style.display = 'flex';

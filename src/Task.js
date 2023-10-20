@@ -1,11 +1,16 @@
-export default function Task(taskText, taskDueDate) {
+// Task just holds 4 HTML elements\\  
+export let inboxTasks = [];
+
+export default function Task(taskText, taskDueDate, editButton, deleteButton) {
   const taskDescription = taskText;
   const taskDate = taskDueDate;
+  const editBtn = editButton;
+  const deleteBtn = deleteButton;
 
-  // Each Task should be responsible for displaying itself what does that even mean lol
-  const display = () => {
-    return `${taskDescription}, ${taskDate}`;
+  const createTaskDiv = () => {
+    const newInboxTask = Task(taskText, dateDiv, editBtn, deleteBtn);
+    inboxTasks.push(newInboxTask);
   };
 
-  return { taskDescription, taskDate, display };
+  return { taskDescription, taskDate, editBtn, deleteBtn };
 }
