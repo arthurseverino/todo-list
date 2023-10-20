@@ -20,7 +20,8 @@
           <div id="project-container-heading">Projects</div>
           <button id="project-button">+ Add Project</button>
           <button id="project-list-container">
-            Project 1<!-- Append projects here-->
+            Project 1
+            <!-- Append project buttons here-->
           </button>
         </div>
       </div>
@@ -29,12 +30,16 @@
         <div id="task-container-heading">Inbox</div>
         <button id="task-button">+ Add Task</button>
         <div id="task-list-container">
-          <div id="task-div">
-            Task 1
-            <div id="date">Date</div>
+          <div class="task-div">
+            <div class="left">
+              <div class="task-text">Go to the gym </div>
+              <div class="date">Due Date: 01/13/2000</div>
+            </div>
+            <div class="right">
+              <button class="edit-btn">Edit</button>
+              <button class="delete-btn">Delete</button>
+            </div>
           </div>
-          <button id="edit-btn">Edit</button>
-          <button id="delete-btn">Delete</button>
         </div>
       </div>
 
@@ -43,28 +48,35 @@
       <div id="task-modal">
         <div id="task-modal-heading">Add New Task</div>
         <form id="my-form">
-          <label for="task-name"> New Task: </label>
-          <input
-            type="text"
-            placeholder=" Take out the trash..."
-            id="task-name"
-            required
-          />
-          <label for="date" id="label-date"> Due Date: </label>
-          <input type="date" id="date" required />
+          <label for="task"> New Task: </label>
+          <input type="text" placeholder=" Take out the trash..." id="task" />
+          <label for="date-modal" id="label-date"> Due Date: </label>
+          <input type="date" id="date-modal" />
           <button type="button" id="close-task-modal-btn">Close</button>
           <button type="submit" id="submit-task-btn">Submit</button>
         </form>
       </div>
+
       <dialog id="project-modal">
         <div id="project-modal-heading">Enter New Project Name</div>
-        <input
-          type="text"
-          placeholder=" My Project..."
-          id="project-name"
-          required
-        />
+        <input type="text" placeholder=" My Project..." id="project-name" required/>
       </dialog>
+
+      <div id="edit-modal">
+        <div id="edit-modal-heading">Edit Task</div>
+        <form id="my-edit-form">
+          <label for="edit-task"> Edit your task below: </label>
+          <!-- the value here is equal to this.task.value, if can't no biggy -->
+          <input type="text" value = "" id="edit-task" />
+          <label for="edit-date-modal" id="edit-label-date"> Due Date: </label>
+          <input type="date" id="edit-date-modal" />
+          <button type="button" id="close-edit-modal-btn">Close</button>
+          <button type="submit" id="submit-edit-btn">Confirm Changes</button>
+        </form>
+      </div>
+
     </div>
   </body>
 </html>
+
+<!--         <input type="text" placeholder=" My Project..." id="project-name" required/>      -->

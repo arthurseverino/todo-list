@@ -1,19 +1,21 @@
 // the buttons are not being styled
 
+import Task from './Task.js';
+const date = document.querySelector('#date-modal');
+const taskListContainer = document.querySelector('#task-list-container');
+const task = document.querySelector('#task').value;
+
+//if you have this inside the function it resets everytime its called 
+// populate this list with Tasks but do what with it? 
+let inboxTasks = [];
+
 export default function handleSubmit() {
-  const date = document.querySelector('#date-modal');
-  const taskListContainer = document.querySelector('#task-list-container');
-  const task = document.querySelector('#task').value;
   let newDate = new Date(date.value);
   let day = newDate.getDay();
   let month = newDate.getMonth() + 1;
   let year = newDate.getFullYear();
 
-  // you should populate an array of task nodes
-  let inboxTasks = [];
-
   //Create task-div
-
   const newTask = document.createElement('div');
   newTask.classList.add('task-div');
 
@@ -23,13 +25,20 @@ export default function handleSubmit() {
   left.classList.add('left');
 
   const taskText = document.createElement('div');
-  taskText.textContent = `Task: ${task}`;
+  if (taskText.textContent === '') {
+    taskText.textContent = `Empty Task`;
+  } else {
+    taskText.textContent = `${task}`;
+  }
   left.appendChild(taskText);
 
   const dateDiv = document.createElement('div');
-  dateDiv.textContent = `Due Date: ${month}/${day}/${year}`;
+  if (isNaN(month) && isNaN(day) && isNaN(year)) {
+    dateDiv.textContent = `No date`;
+  } else {
+    dateDiv.textContent = `Due Date: ${month}/${day}/${year}`;
+  }
   left.appendChild(dateDiv);
-
   newTask.appendChild(left);
 
   // right
@@ -48,8 +57,14 @@ export default function handleSubmit() {
   right.appendChild(deleteBtn);
 
   newTask.appendChild(right);
-
-  //append to task list container
-
   taskListContainer.appendChild(newTask);
+
+  const newInboxTask = new Task(task, dateDiv.textContent);
+  inboxTasks.push(newInboxTask);
+
+
+
+  localStorage.setItem('task-text', JSON.stringify(inboxTasks));
+  console.log('inboxTasks:' + inboxTasks);
+  console.log('newInboxTask' + newInboxTask);
 }

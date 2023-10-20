@@ -1,0 +1,9 @@
+export const myForm = document.querySelector('#my-form');
+export const closeTaskModal = document.querySelector('#close-task-modal-btn');
+export const addTaskBtn = document.querySelector('#task-button');
+export const taskModal = document.querySelector('#task-modal');
+export const editBtn = document.querySelector('.edit-btn');
+export const editModal = document.querySelector('#edit-modal');
+export const myEditForm = document.querySelector('#my-edit-form');
+export const closeEditTaskModal = document.querySelector('#close-edit-modal-btn');
+export const deleteBtn = document.querySelector('.delete-btn');

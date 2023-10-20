@@ -105,6 +105,7 @@ body {
 
 .right {
   width: 20%;
+  display: flex;
 }
 
 .task-div {
@@ -113,6 +114,10 @@ body {
   border-radius: 1.2rem;
   border: 1px solid black;
   height: 10%;
+}
+
+.task-text {
+  font-size: 1.3rem;
 }
 
 .task-div:hover {
@@ -145,6 +150,10 @@ button:focus {
   cursor: pointer;
 }
 
+
+
+
+
 /* modal stuff here */
 
 #task-modal,
@@ -160,7 +169,7 @@ button:focus {
   position: fixed;
   left: 50vw;
   top: 50vh;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   font-weight: 700;
 }
 
