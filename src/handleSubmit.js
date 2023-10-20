@@ -2,24 +2,33 @@ import updateDisplay from './updateDisplay';
 import { editModal } from './DOMStuff.js';
 
 //if you have this list inside the function it resets everytime its called, populate it with task-div elements
-let inboxTasks = [];
-let inboxClasses = [];
 
+//can i build the DOM elements with a class
+let inboxTasks = [];
+
+//shhould be a class of HTML elements, you can access the text content and everything from outside
+//try to build dom elements with the class
 class Task {
-  constructor(taskText, taskDueDate) {
+  constructor(taskText, taskDueDate, editBtn, deleteBtn) {
     this.taskText = taskText;
     this.taskDate = taskDueDate;
-    this.edit = false;
-    this.delete = false;
+    this.editBtn = editBtn;
+    this.deleteBtn = deleteBtn;
   }
 }
 
 export default function handleSubmit() {
-  //this is literally the task text, the description, the main bulk, big boy, you have to keep it in here or else it will be empty
+  let newInboxTask = createTaskDiv();
+  inboxTasks.push(newInboxTask);
+  console.log('inboxTasks: ' + inboxTasks);
+  updateDisplay(inboxTasks);
+}
+
+function createTaskDiv() {
+  //you have to keep task in here or else it will be empty
   const task = document.querySelector('#task').value;
   const date = document.querySelector('#date-modal');
   const taskListContainer = document.querySelector('#task-list-container');
-
   let newDate = new Date(date.value);
   let day = newDate.getDay();
   let month = newDate.getMonth() + 1;
@@ -54,6 +63,10 @@ export default function handleSubmit() {
 
   const deleteBtn = document.createElement('button');
   deleteBtn.textContent = 'Delete';
+  deleteBtn.addEventListener('click', () => {
+    inboxTasks.splice(inboxTasks.indexOf(task), 1);
+    updateDisplay(inboxTasks);
+  });
 
   left.classList.add('left');
   newInboxTask.classList.add('task-div');
@@ -62,27 +75,13 @@ export default function handleSubmit() {
   editBtn.classList.add('edit-btn');
   deleteBtn.classList.add('delete-btn');
 
-  // the container should be populated by now, so find the one you want to delete and remove it from whatever array it's apart of (inboxArray, projectsarray)
-  deleteBtn.addEventListener('click', () => {
-    inboxTasks.splice(inboxTasks.indexOf(task), 1);
-    updateDisplay(inboxTasks);
-  });
-
   right.appendChild(editBtn);
   right.appendChild(deleteBtn);
   newInboxTask.appendChild(left);
   newInboxTask.appendChild(right);
 
-  const newClass = new Task(taskText.textContent, dateDiv.textContent);
-  inboxClasses.push(newClass);
-
-  // you're pushing task-div HTML elements
-  inboxTasks.push(newInboxTask);
-  updateDisplay(inboxTasks);
-
   console.log('task: ' + taskText.textContent);
   console.log('dateDiv.textContent: ' + dateDiv.textContent);
-  console.log('inboxTasks: ' + inboxTasks);
-  localStorage.setItem('newInboxTask', JSON.stringify(newInboxTask));
-  localStorage.getItem('newInboxTask');
+
+  return newInboxTask;
 }

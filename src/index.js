@@ -34,7 +34,6 @@ import handleEdit from './handleEdit.js';
 import {addTaskBtn, closeTaskModal, myForm, taskModal, editBtn, 
   editModal, myEditForm, closeEditTaskModal, deleteBtn, taskListContainer } from './DOMStuff.js';
 
-
 addTaskBtn.addEventListener('click', () => {
   myForm.reset();
   taskModal.style.display = 'flex';
