@@ -17,13 +17,16 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 2.3rem;
-  color: dodgerblue;
+  background: linear-gradient(to left,pink, lightgoldenrodyellow, lavenderblush);
 }
 
 #main-container {
   display: flex;
   height: 100%;
 }
+
+
+
 
 /* sidebar stuff here */
 
@@ -49,6 +52,7 @@ body {
 #project-container-heading {
   display: flex;
   font-size: 1.5rem;
+  font-weight: 700;
 }
 
 #project-list-container {
@@ -62,6 +66,13 @@ body {
   background-color: #71ef6d;
 }
 
+
+
+
+
+
+
+
 /*task container stuff here */
 
 #task-container {
@@ -69,15 +80,15 @@ body {
   flex-direction: column;
   width: 70%;
   padding: 1rem 1rem;
-  background-color: lavenderblush;
+  background-color:lavenderblush;
 }
 
 #task-container-heading {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.8rem;
+  font-weight: 900;
 }
 
 #task-button {
@@ -117,11 +128,18 @@ body {
 }
 
 .task-text {
-  font-size: 1.3rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.date {
+  display: flex;
+  align-items: center;
 }
 
 .task-div:hover {
   background-color: rgb(235, 235, 247);
+  transform: scale(1.02);
 }
 
 .delete-btn {
@@ -147,12 +165,9 @@ button {
 button:hover,
 button:focus {
   filter: brightness(90%);
+  transform: scale(1.02);
   cursor: pointer;
 }
-
-
-
-
 
 /* modal stuff here */
 
@@ -175,32 +190,51 @@ button:focus {
 
 /* you have to flex the form too */
 #my-form,
-#my-edit-form {
+#my-edit-form{
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
 #task-modal-heading,
-#edit-modal-heading {
+#edit-modal-heading,
+#project-modal-heading {
   text-align: center;
   height: 20%;
   font-size: 2rem;
 }
 
 #project-modal {
-  display: none;
+  background-color: rgb(230, 230, 250);
+  border-radius: 1rem;
+  border: 4px solid black;
+  width: 60%;
+  height: 60%;
+  padding: 2rem;
+  position: fixed;
+  left: 50vw;
+  top: 50vh;
+  transform: translate(-50%, -50%);
+  font-weight: 700;
+}
+
+#project-flex-container{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 #close-task-modal-btn,
-#close-edit-modal-btn {
+#close-edit-modal-btn,
+#close-project-modal-btn {
   background-color: #ff9c9c;
   margin-top: 3rem;
   height: 2rem;
 }
 
 #submit-task-btn,
-#submit-edit-btn {
+#submit-edit-btn,
+#submit-project-btn {
   background-color: #9fff9c;
   height: 2rem;
 }

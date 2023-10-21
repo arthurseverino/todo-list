@@ -26,12 +26,14 @@ function formatDate(date) {
 export default function addTaskToContainer() {
   // inboxTasks is an array of classes
   // so you want to create the class first, then dynamically create DOM Elements based off of those class values
+  // this is to keep track of them 
   const newTask = getTaskFromInput();
   inboxTasks.push(newTask);
-  updateDisplay();
+  updateDisplay(inboxTasks);
 }
 
-//so here you're creating the new task with the values from form
+//so here you're creating the new Task with the values from the form
+// the class should be created first
 function getTaskFromInput() {
   const task = document.querySelector('#task').value;
   const date = document.querySelector('#date-modal').value;
@@ -39,8 +41,12 @@ function getTaskFromInput() {
   return new Task(task, formattedDate);
 }
 
-// no query selectors in here that's important, you're basing all the info off of a class
-// the class should be created first
+
+// here you want to change the parameter, it can be passed in a project class as well
+// i think you can move this to it's own file
+// limit query selectors in here that's important, 
+// you should get all the info you need off of taskClass, projectClass which has the info query selected already 
+// now you just want to create the HTML elements with that CLASS info 
 export function createTaskDiv(taskClass) {
   const newInboxTask = document.createElement('div');
   const left = document.createElement('div');
@@ -75,13 +81,13 @@ export function createTaskDiv(taskClass) {
     const date = document.querySelector('#edit-date-modal').value;
     taskClass.taskDate = formatDate(date);
     editModal.style.display = 'none';
-    updateDisplay();
+    updateDisplay(inboxTasks);
   });
 
   deleteBtn.textContent = 'Delete';
   deleteBtn.addEventListener('click', () => {
     inboxTasks.splice(inboxTasks.indexOf(taskClass), 1);
-    updateDisplay();
+    updateDisplay(inboxTasks);
   });
 
   left.classList.add('left');
