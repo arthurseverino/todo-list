@@ -1,23 +1,15 @@
 import updateDisplay from './updateDisplay';
-import addTaskToContainer, { inboxTasks } from './Task';
+import { getTaskFromInput } from './Task';
 const projectListContainer = document.querySelector('#project-list-container');
 export let projectArray = [];
 
-// if a project is clicked while one is already active,
-// turn off the one that is active, turn on the one that was clicked
-
 // wait... every section is a project, even Inbox
-
-// Inbox is a project!!
+// just this.tasks and projectArray
 
 export class Project {
   constructor(projectName) {
     this.name = projectName;
-    this.projectTasks = [];
-    this.active = false;
-  }
-  toggleActive() {
-    this.active = !this.active;
+    this.tasks = [];
   }
 }
 
@@ -27,19 +19,14 @@ export function addProjectToContainer() {
   const newProject = new Project(newProjectName);
   newProjectDiv.textContent = newProjectName;
   newProjectDiv.addEventListener('click', () => {
-    if (projectArray.length() !== 0) {
-      for (const proj of projectArray) {
-        if (proj.active == true) {
-          proj.active = false;
-          newProject.active = true;
-        }
-      }
-    }
-    updateDisplay(newProject.projectTasks);
+    updateDisplay(newProject.tasks);
   });
 
   projectArray.push(newProject);
   projectListContainer.appendChild(newProjectDiv);
+  const newTask = getTaskFromInput();
+  newProject.tasks.push(newTask);
+  updateDisplay(newProject.tasks);
 }
 
 console.log(
