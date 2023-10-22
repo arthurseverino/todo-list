@@ -1,6 +1,5 @@
 import updateDisplay from './updateDisplay';
 import { editModal, myEditForm, taskListContainer } from './DOMStuff.js';
-  // so you want to create the class first, then dynamically create DOM Elements based off of those class values
 
 export class Task {
   constructor(taskText, taskDueDate) {
@@ -22,16 +21,6 @@ function formatDate(date) {
   }
 }
 
-// this is the first thing that is called when the form is submitted
-export default function addTaskToProject() {
-
-  const newTask = getTaskFromInput();
-  tasks.push(newTask);
-  updateDisplay(tasks);
-}
-
-// so here you're creating the new Task with the values from the form
-// the class should be created first
 export function getTaskFromInput() {
   const task = document.querySelector('#task').value;
   const date = document.querySelector('#date-modal').value;
@@ -40,8 +29,8 @@ export function getTaskFromInput() {
 }
 
 // limit query selectors in here that's important
-// you should get all the info you need off of your class which has the info query selected already
-// now you just want to create the HTML elements with that CLASS info
+// you should get all the info you need off of your class which has the info query selected from the form already
+// now you just want to dynamically create the HTML elements with that CLASS info
 export function createTaskDiv(task) {
   const newTaskDiv = document.createElement('div');
   const left = document.createElement('div');

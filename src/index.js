@@ -1,10 +1,9 @@
 /*
 the default when opened should show inbox 
 
-when you add a task, you always add it to inbox and check the date to also put it in this week or Today 
-
 you can also delete tasks and projects, simple as deleting from array (check library for how to delete)
-you can edit task by reopening a new form but with the saved text in it from its current textContent
+
+// so you want to create the class first, then dynamically create DOM Elements based off of those class values
 
 use dialog for projectmodal display, try adding an overlay
 
@@ -16,16 +15,31 @@ localStorage.setItem(key, value);
 
 import addTaskToProject from './Task.js';
 import { addProjectToContainer } from './Project.js';
-import {addTaskBtn, closeTaskModal, myForm, taskModal, editBtn, editModal, myEditForm, closeEditTaskModal, addProjectButton, projectModal, deleteBtn, taskListContainer, submitProjectBtn, closeProjectModal } from './DOMStuff.js';
+import {
+  addTaskBtn,
+  closeTaskModal,
+  myForm,
+  taskModal,
+  editBtn,
+  editModal,
+  myEditForm,
+  closeEditTaskModal,
+  addProjectButton,
+  projectModal,
+  deleteBtn,
+  taskListContainer,
+  submitProjectBtn,
+  closeProjectModal,
+} from './DOMStuff.js';
 
-
-/* Task event listeners */ 
+/* Task event listeners */
 addTaskBtn.addEventListener('click', () => {
   taskModal.style.display = 'flex';
 });
 
 myForm.addEventListener('submit', (event) => {
-  addTaskToProject();
+  // append the task to the currently open project
+  //addTaskToProject();
   taskModal.style.display = 'none';
   event.preventDefault();
   myForm.reset();
@@ -39,19 +53,17 @@ closeEditTaskModal.addEventListener('click', () => {
   editModal.style.display = 'none';
 });
 
-
-
-
 /* Project event listeners */
 
 addProjectButton.addEventListener('click', () => {
   projectModal.showModal();
-})
+});
 
 submitProjectBtn.addEventListener('click', () => {
   addProjectToContainer();
-})
+  // just make a form so you can call .reset here
+});
 
 closeProjectModal.addEventListener('click', () => {
   projectModal.close();
-})
+});

@@ -62,13 +62,12 @@
       </div>
 
       <dialog id="project-modal">
-        <div id="project-modal-heading">Enter New Project Name</div>
-        <input
-          type="text"
-          placeholder=" My Project..."
-          id="project-name"
-          required
-        />
+        <div id="project-flex-container">
+          <div id="project-modal-heading">Enter New Project Name:</div>
+          <input type="text" placeholder=" My Project..." id="project-name" required/>
+          <button type="button" id="close-project-modal-btn">Close</button>
+          <button type="submit" id="submit-project-btn">Submit</button>
+        </div>
       </dialog>
 
       <div id="edit-modal">

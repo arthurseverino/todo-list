@@ -21,15 +21,8 @@ export function addProjectToContainer() {
   newProjectDiv.addEventListener('click', () => {
     updateDisplay(newProject.tasks);
   });
-
-  projectArray.push(newProject);
-  projectListContainer.appendChild(newProjectDiv);
   const newTask = getTaskFromInput();
   newProject.tasks.push(newTask);
-  updateDisplay(newProject.tasks);
+  projectArray.push(newProject);
+  projectListContainer.appendChild(newProjectDiv);
 }
-
-console.log(
-  'Project Input (checking if i need a form to receive input, form might just be for form validation and submitting data to server): ' +
-    newProjectName
-);
