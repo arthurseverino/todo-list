@@ -1,5 +1,4 @@
-import { createTaskDiv } from './handleSubmit';
-
+import { createTaskDiv } from './Task';
 const taskListContainer = document.querySelector('#task-list-container');
 
 export default function updateDisplay(taskArray) {

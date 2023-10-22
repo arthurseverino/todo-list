@@ -29,10 +29,12 @@ localStorage.setItem(key, value);
 
 */
 
-import addTaskToContainer from './handleSubmit.js';
+import addTaskToContainer from './Task.js';
 import { addProjectToContainer } from './Project.js';
 import {addTaskBtn, closeTaskModal, myForm, taskModal, editBtn, editModal, myEditForm, closeEditTaskModal, addProjectButton, projectModal, deleteBtn, taskListContainer, submitProjectBtn, closeProjectModal } from './DOMStuff.js';
 
+
+/* Task event listeners */ 
 addTaskBtn.addEventListener('click', () => {
   taskModal.style.display = 'flex';
 });
@@ -52,14 +54,19 @@ closeEditTaskModal.addEventListener('click', () => {
   editModal.style.display = 'none';
 });
 
+
+
+
+/* Project event listeners */
+
 addProjectButton.addEventListener('click', () => {
   projectModal.showModal();
 })
 
-closeProjectModal.addEventListener('click', () => {
-  projectModal.close();
-})
-
 submitProjectBtn.addEventListener('click', () => {
   addProjectToContainer();
+})
+
+closeProjectModal.addEventListener('click', () => {
+  projectModal.close();
 })

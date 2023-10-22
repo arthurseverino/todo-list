@@ -1,10 +1,11 @@
 import updateDisplay from './updateDisplay';
 import { editModal, myEditForm, taskListContainer } from './DOMStuff.js';
+import { projectArray } from './Project';
 
 export let inboxTasks = [];
 
 export class Task {
-  constructor(taskText, taskDueDate) {
+  constructor(taskText, taskDueDate, apartOfProject = false) {
     this.taskText = taskText;
     this.taskDate = taskDueDate;
   }
@@ -23,30 +24,41 @@ function formatDate(date) {
   }
 }
 
+// this is the first thing that is called when the form is submitted
+// you want to check if a project is currently active, append it to that projects tasks
+// else, append to inboxTasks
+
 export default function addTaskToContainer() {
-  // inboxTasks is an array of classes
   // so you want to create the class first, then dynamically create DOM Elements based off of those class values
-  // this is to keep track of them 
   const newTask = getTaskFromInput();
-  inboxTasks.push(newTask);
-  updateDisplay(inboxTasks);
+
+  for (const proj of projectArray)
+    if (proj.active === true && newTask.apartOfProject) {
+      proj.projectTasks.push(newTask);
+      updateDisplay(proj.projectTasks);
+    } else {
+      inboxTasks.push(newTask);
+      updateDisplay(inboxTasks);
+    }
 }
 
-//so here you're creating the new Task with the values from the form
+// so here you're creating the new Task with the values from the form
 // the class should be created first
 function getTaskFromInput() {
   const task = document.querySelector('#task').value;
   const date = document.querySelector('#date-modal').value;
   const formattedDate = formatDate(date);
+  for (const proj of projectArray) {
+    if (proj.active) {
+      return new Task(task, formattedDate, true);
+    }
+  }
   return new Task(task, formattedDate);
 }
 
-
-// here you want to change the parameter, it can be passed in a project class as well
-// i think you can move this to it's own file
-// limit query selectors in here that's important, 
-// you should get all the info you need off of taskClass, projectClass which has the info query selected already 
-// now you just want to create the HTML elements with that CLASS info 
+// limit query selectors in here that's important,
+// you should get all the info you need off of taskClass, projectClass which has the info query selected already
+// now you just want to create the HTML elements with that CLASS info
 export function createTaskDiv(taskClass) {
   const newInboxTask = document.createElement('div');
   const left = document.createElement('div');
@@ -70,7 +82,7 @@ export function createTaskDiv(taskClass) {
   editBtn.textContent = 'Edit';
   editBtn.addEventListener('click', () => {
     editModal.style.display = 'flex';
-    // this keeps current value in form, needed for edit 
+    // this keeps current value in form, needed for edit
     document.querySelector('#edit-task').value = taskText.textContent;
   });
 
@@ -81,12 +93,14 @@ export function createTaskDiv(taskClass) {
     const date = document.querySelector('#edit-date-modal').value;
     taskClass.taskDate = formatDate(date);
     editModal.style.display = 'none';
+    //is this ok
     updateDisplay(inboxTasks);
   });
 
   deleteBtn.textContent = 'Delete';
   deleteBtn.addEventListener('click', () => {
     inboxTasks.splice(inboxTasks.indexOf(taskClass), 1);
+    // is this ok
     updateDisplay(inboxTasks);
   });
 
