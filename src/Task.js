@@ -33,8 +33,10 @@ export function getTaskFromInput() {
 // now you just want to dynamically create the HTML elements with that CLASS info
 //you want to create a task array not just one task
 
+//what if taskList is empty? 
+
 export function createTaskDivs(taskList) {
-  for (const task in taskList) {
+  for (const task of taskList) {
     const newTaskDiv = document.createElement('div');
     const left = document.createElement('div');
     const newTaskText = document.createElement('div');
@@ -42,7 +44,7 @@ export function createTaskDivs(taskList) {
     const right = document.createElement('div');
     const editBtn = document.createElement('button');
     const deleteBtn = document.createElement('button');
-
+    console.log(task.taskText);
     if (task.taskText === '') {
       newTaskText.textContent = `Empty Task`;
     } else {

@@ -57,7 +57,8 @@ body {
 }
 
 #project-list-container {
-  border: 3px solid black;
+  display:flex;
+  flex-direction: column;
   height: 100%;
   gap: 0.5rem;
 }
@@ -65,10 +66,11 @@ body {
 #project-button {
   margin: 1rem 0;
   background-color: #71ef6d;
+  height:3rem;
 }
 
 #project-list-container button{
-  height:20%;
+  height:10%;
   background:linear-gradient(45deg,lavenderblush,lavender);
   border: 1px solid black;
 }

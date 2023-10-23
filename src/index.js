@@ -3,7 +3,7 @@ the default when opened should show inbox
 
 you can also delete tasks and projects, simple as deleting from array (check library for how to delete)
 
-// so you want to create the class first, then dynamically create DOM Elements based off of those class values
+so you want to create the class first, then dynamically create DOM Elements based off of those class values
 
 use dialog for projectmodal display, try adding an overlay
 
@@ -11,9 +11,12 @@ how to remove projects? ideally a button that shows up on hover, you can documen
 
 localStorage.setItem(key, value);
 
-*/
+get rid of all dummy stuff
 
-import { Project, addProjectToContainer } from './Project.js';
+*/
+import { init, projectArray } from './Project.js';
+import { addProjectToContainer } from './Project.js';
+import { getTaskFromInput } from './Task.js';
 import {
   addTaskBtn,
   closeTaskModal,
@@ -32,7 +35,9 @@ import {
 } from './DOMStuff.js';
 import updateDisplay from './updateDisplay.js';
 
-/* Task event listeners */
+
+init();
+
 addTaskBtn.addEventListener('click', () => {
   taskModal.style.display = 'flex';
 });
@@ -58,14 +63,16 @@ closeEditTaskModal.addEventListener('click', () => {
   editModal.style.display = 'none';
 });
 
-/* Project event listeners */
 
+
+//no need for prevent default without a form 
 addProjectButton.addEventListener('click', () => {
   projectModal.showModal();
 });
 
 submitProjectBtn.addEventListener('click', () => {
   addProjectToContainer();
+  projectModal.close();
   // just make a form so you can call .reset here
 });
 
