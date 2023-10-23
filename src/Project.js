@@ -1,9 +1,10 @@
 import updateDisplay from './updateDisplay';
-import { getTaskFromInput } from './Task';
+import { Task, getTaskFromInput } from './Task';
 const projectListContainer = document.querySelector('#project-list-container');
 const inbox = document.querySelector('#inbox');
 const today = document.querySelector('#today');
 const thisWeek = document.querySelector('#this-week');
+let taskContainerHeading = document.querySelector('#task-container-heading')
 export let projectArray = [];
 
 export class Project {
@@ -16,6 +17,7 @@ export class Project {
     turnOffProject();
     this.clicked = true;
     updateDisplay();
+    taskContainerHeading.textContent = this.name;
   }
 }
 
@@ -32,21 +34,15 @@ export function init() {
   const todayProject = new Project('Today', false);
   const thisWeekProject = new Project('This week', false);
   inbox.addEventListener('click', () => {
-    turnOffProject();
-    inboxProject.clicked = true;
-    updateDisplay();
+    inboxProject.display();
   });
   today.addEventListener('click', () => {
-    turnOffProject();
-    todayProject.clicked = true;
-    updateDisplay();
+    todayProject.display();
   });
   thisWeek.addEventListener('click', () => {
-    turnOffProject();
-    thisWeekProject.clicked = true;
-    updateDisplay();
+    thisWeekProject.display();
   });
-  
+
   projectArray.push(inboxProject, todayProject, thisWeekProject);
 }
 
@@ -56,9 +52,7 @@ export function addProjectToContainer() {
   const newProject = new Project(newProjectName, false);
   newProjectDiv.textContent = newProjectName;
   newProjectDiv.addEventListener('click', () => {
-    turnOffProject();
-    newProject.clicked = true;
-    updateDisplay();
+    newProject.display();
   });
   projectArray.push(newProject);
   projectListContainer.appendChild(newProjectDiv);

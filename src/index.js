@@ -5,13 +5,11 @@ you can also delete tasks and projects, simple as deleting from array (check lib
 
 so you want to create the class first, then dynamically create DOM Elements based off of those class values
 
-use dialog for projectmodal display, try adding an overlay
+use dialog for projectmodal display, try adding an overlay for taskmodal
 
 how to remove projects? ideally a button that shows up on hover, you can document.createElement one  
 
 localStorage.setItem(key, value);
-
-get rid of all dummy stuff
 
 */
 import { init, projectArray } from './Project.js';
@@ -44,6 +42,8 @@ addTaskBtn.addEventListener('click', () => {
 
 myForm.addEventListener('submit', (event) => {
   const newTask = getTaskFromInput();
+
+  //you would check for date here 
   for (const project of projectArray) {
     if (project.clicked) {
       project.tasks.push(newTask);
@@ -72,10 +72,12 @@ addProjectButton.addEventListener('click', () => {
 
 submitProjectBtn.addEventListener('click', () => {
   addProjectToContainer();
+  document.querySelector('#project-name').value = ""
   projectModal.close();
   // just make a form so you can call .reset here
 });
 
 closeProjectModal.addEventListener('click', () => {
   projectModal.close();
+  document.querySelector('#project-name').value =  ""
 });
