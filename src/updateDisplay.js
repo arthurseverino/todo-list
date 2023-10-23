@@ -1,11 +1,14 @@
-import { createTaskDiv } from './Task';
+import { projectArray } from './Project';
+import { createTaskDivs } from './Task';
 const taskListContainer = document.querySelector('#task-list-container');
 
-export default function updateDisplay(projectTaskArray) {
+export default function updateDisplay() {
   // what does setting = "" do
-  // have a feeling it clears the display 
+  // have a feeling it clears the display
   taskListContainer.textContent = '';
-  for (const task of projectTaskArray) {
-    createTaskDiv(task);
+  for (const project of projectArray) {
+    if (project.clicked) {
+      createTaskDivs(project.tasks);
+    }
   }
 }

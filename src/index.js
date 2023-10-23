@@ -13,8 +13,7 @@ localStorage.setItem(key, value);
 
 */
 
-import addTaskToProject from './Task.js';
-import { addProjectToContainer } from './Project.js';
+import { Project, addProjectToContainer } from './Project.js';
 import {
   addTaskBtn,
   closeTaskModal,
@@ -31,6 +30,7 @@ import {
   submitProjectBtn,
   closeProjectModal,
 } from './DOMStuff.js';
+import updateDisplay from './updateDisplay.js';
 
 /* Task event listeners */
 addTaskBtn.addEventListener('click', () => {
@@ -38,8 +38,13 @@ addTaskBtn.addEventListener('click', () => {
 });
 
 myForm.addEventListener('submit', (event) => {
-  // append the task to the currently open project
-  //addTaskToProject();
+  const newTask = getTaskFromInput();
+  for (const project of projectArray) {
+    if (project.clicked) {
+      project.tasks.push(newTask);
+    }
+  }
+  updateDisplay();
   taskModal.style.display = 'none';
   event.preventDefault();
   myForm.reset();
