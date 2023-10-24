@@ -1,10 +1,7 @@
 import updateDisplay from './updateDisplay';
-import { Task, getTaskFromInput } from './Task';
+import { inboxProject } from '.';
 const projectListContainer = document.querySelector('#project-list-container');
-const inbox = document.querySelector('#inbox');
-const today = document.querySelector('#today');
-const thisWeek = document.querySelector('#this-week');
-let taskContainerHeading = document.querySelector('#task-container-heading')
+let taskContainerHeading = document.querySelector('#task-container-heading');
 export let projectArray = [];
 
 export class Project {
@@ -12,6 +9,7 @@ export class Project {
     this.name = projectName;
     this.clicked = isClicked;
     this.tasks = [];
+    this.deleted = false;
   }
   display() {
     turnOffProject();
@@ -21,39 +19,46 @@ export class Project {
   }
 }
 
+export function addProjectToContainer() {
+  const newProjectName = document.querySelector('#project-name').value;
+  const newProjectDiv = document.createElement('div');
+  const newProjectNameDiv = document.createElement('div');
+  const deleteProjectBtn = document.createElement('button');
+
+  const newProject = new Project(newProjectName, false);
+  newProjectNameDiv.textContent = newProjectName;
+  newProjectDiv.addEventListener('click', () => {
+    newProject.display();
+  });
+
+  deleteProjectBtn.addEventListener('click', (event) => {
+    event.stopPropagation();
+    newProject.deleted = true;
+    newProject.clicked = false;
+    for (const project of projectArray) {
+      if (project.deleted) {
+        projectArray.splice(projectArray.indexOf(project), 1);
+        projectListContainer.removeChild(newProjectDiv);
+        inboxProject.display();
+      }
+    }
+  });
+
+  deleteProjectBtn.textContent = 'Delete';
+  newProjectDiv.classList.add('new-project-div');
+  newProjectNameDiv.classList.add('new-project-name-div');
+  deleteProjectBtn.classList.add('delete-project-btn');
+
+  newProjectDiv.appendChild(newProjectNameDiv);
+  newProjectDiv.appendChild(deleteProjectBtn);
+  projectListContainer.appendChild(newProjectDiv);
+  projectArray.push(newProject);
+}
+
 export function turnOffProject() {
   for (const project of projectArray) {
     if (project.clicked) {
       project.clicked = false;
     }
   }
-}
-
-export function init() {
-  const inboxProject = new Project('Inbox', true);
-  const todayProject = new Project('Today', false);
-  const thisWeekProject = new Project('This week', false);
-  inbox.addEventListener('click', () => {
-    inboxProject.display();
-  });
-  today.addEventListener('click', () => {
-    todayProject.display();
-  });
-  thisWeek.addEventListener('click', () => {
-    thisWeekProject.display();
-  });
-
-  projectArray.push(inboxProject, todayProject, thisWeekProject);
-}
-
-export function addProjectToContainer() {
-  const newProjectName = document.querySelector('#project-name').value;
-  const newProjectDiv = document.createElement('button');
-  const newProject = new Project(newProjectName, false);
-  newProjectDiv.textContent = newProjectName;
-  newProjectDiv.addEventListener('click', () => {
-    newProject.display();
-  });
-  projectArray.push(newProject);
-  projectListContainer.appendChild(newProjectDiv);
 }

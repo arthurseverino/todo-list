@@ -1,5 +1,10 @@
 import updateDisplay from './updateDisplay';
-import { editModal, myEditForm, taskListContainer } from './DOMStuff.js';
+import {
+  editModal,
+  myEditForm,
+  taskListContainer,
+} from './DOMStuff.js';
+import { thisWeekProject, todayProject } from '.';
 
 export class Task {
   constructor(taskText, taskDueDate) {
@@ -10,7 +15,12 @@ export class Task {
 
 function formatDate(date) {
   let newDate = new Date(date);
+  let currentDay = new Date().getDate();
   let day = newDate.getDate() + 1;
+  if (day === currentDay) {
+    todayProject.clicked = true;
+    thisWeekProject.clicked = true;
+  }
   let month = newDate.getMonth() + 1;
   let year = newDate.getFullYear();
 
@@ -31,7 +41,7 @@ export function getTaskFromInput() {
 // limit query selectors in here that's important
 // you should get all the info you need off of your class which has the info query selected from the form already
 // now you just want to dynamically create the HTML elements with that CLASS info
-//you want to create a task array not just one task
+// you want to create a task array not just one task
 
 export function createTaskDivs(taskList) {
   for (const task of taskList) {
@@ -42,7 +52,6 @@ export function createTaskDivs(taskList) {
     const right = document.createElement('div');
     const editBtn = document.createElement('button');
     const deleteBtn = document.createElement('button');
-    console.log(task.taskText);
     if (task.taskText === '') {
       newTaskText.textContent = `Empty Task`;
     } else {
@@ -62,7 +71,6 @@ export function createTaskDivs(taskList) {
     });
 
     myEditForm.addEventListener('submit', (event) => {
-      console.log('edit form submitted');
       event.preventDefault();
       task.taskText = document.querySelector('#edit-task').value;
       const date = document.querySelector('#edit-date-modal').value;

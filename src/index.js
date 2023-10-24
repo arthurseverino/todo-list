@@ -1,18 +1,11 @@
 /*
-the default when opened should show inbox 
-
-you can also delete tasks and projects, simple as deleting from array (check library for how to delete)
-
-so you want to create the class first, then dynamically create DOM Elements based off of those class values
-
 use dialog for projectmodal display, try adding an overlay for taskmodal
-
-how to remove projects? ideally a button that shows up on hover, you can document.createElement one  
-
+add real dummy nodes 
 localStorage.setItem(key, value);
 
 */
-import { init, projectArray } from './Project.js';
+import { projectArray } from './Project.js';
+import { Project } from './Project.js';
 import { addProjectToContainer } from './Project.js';
 import { getTaskFromInput } from './Task.js';
 import {
@@ -20,21 +13,32 @@ import {
   closeTaskModal,
   myForm,
   taskModal,
-  editBtn,
   editModal,
-  myEditForm,
   closeEditTaskModal,
   addProjectButton,
   projectModal,
-  deleteBtn,
-  taskListContainer,
   submitProjectBtn,
   closeProjectModal,
+  inbox,
+  today,
+  thisWeek,
 } from './DOMStuff.js';
 import updateDisplay from './updateDisplay.js';
 
-
-init();
+// init();
+export const inboxProject = new Project('Inbox', true);
+export const todayProject = new Project('Today', false);
+export const thisWeekProject = new Project('This week', false);
+inbox.addEventListener('click', () => {
+  inboxProject.display();
+});
+today.addEventListener('click', () => {
+  todayProject.display();
+});
+thisWeek.addEventListener('click', () => {
+  thisWeekProject.display();
+});
+projectArray.push(inboxProject, todayProject, thisWeekProject);
 
 addTaskBtn.addEventListener('click', () => {
   taskModal.style.display = 'flex';
@@ -42,13 +46,14 @@ addTaskBtn.addEventListener('click', () => {
 
 myForm.addEventListener('submit', (event) => {
   const newTask = getTaskFromInput();
-
-  //you would check for date here 
   for (const project of projectArray) {
     if (project.clicked) {
       project.tasks.push(newTask);
     }
   }
+
+  todayProject.clicked = false;
+  thisWeekProject.clicked = false;
   updateDisplay();
   taskModal.style.display = 'none';
   event.preventDefault();
@@ -63,21 +68,19 @@ closeEditTaskModal.addEventListener('click', () => {
   editModal.style.display = 'none';
 });
 
-
-
-//no need for prevent default without a form 
+// no need for prevent default without a form
+// but use a form so you can call .reset here
 addProjectButton.addEventListener('click', () => {
   projectModal.showModal();
 });
 
 submitProjectBtn.addEventListener('click', () => {
   addProjectToContainer();
-  document.querySelector('#project-name').value = ""
+  document.querySelector('#project-name').value = '';
   projectModal.close();
-  // just make a form so you can call .reset here
 });
 
 closeProjectModal.addEventListener('click', () => {
   projectModal.close();
-  document.querySelector('#project-name').value =  ""
+  document.querySelector('#project-name').value = '';
 });

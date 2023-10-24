@@ -12,3 +12,6 @@ export const addProjectButton = document.querySelector('#project-button')
 export const projectModal = document.querySelector('#project-modal')
 export const closeProjectModal = document.querySelector('#close-project-modal-btn');
 export const submitProjectBtn = document.querySelector('#submit-project-btn');
+export const inbox = document.querySelector('#inbox');
+export const today = document.querySelector('#today');
+export const thisWeek = document.querySelector('#this-week');

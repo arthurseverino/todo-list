@@ -6,6 +6,16 @@
   padding: 0;
 }
 
+input[type='text'],
+input[type='date'] {
+  height: 3rem;
+}
+
+/* 255,222,173,0.9 */
+dialog::backdrop {
+  background-color: (255, 255, 255, 0.9);
+}
+
 body {
   width: 100vw;
   height: 100vh;
@@ -17,6 +27,7 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 2.3rem;
+  color: firebrick;
   background: linear-gradient(
     to left,
     pink,
@@ -38,7 +49,7 @@ body {
   width: 30%;
   padding: 1rem 1rem;
   gap: 0.5rem;
-  background-color: lavender;
+  background-color: white;
 }
 
 #projects-container {
@@ -57,22 +68,48 @@ body {
 }
 
 #project-list-container {
-  display:flex;
+  display: flex;
   flex-direction: column;
   height: 100%;
   gap: 0.5rem;
+  overflow:auto;
 }
 
 #project-button {
   margin: 1rem 0;
   background-color: #71ef6d;
-  height:3rem;
+  height: 3rem;
 }
 
-#project-list-container button{
-  height:10%;
-  background:linear-gradient(45deg,lavenderblush,lavender);
+.new-project-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 15%;
+  border-radius: 1rem;
+  padding: 1rem 1rem;
   border: 1px solid black;
+  background: linear-gradient(45deg, pink, lightgoldenrodyellow, lavenderblush);
+}
+
+.new-project-div:hover {
+  filter: brightness(90%);
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+.new-project-name-div {
+  font-size: 1.35rem;
+  font-weight: 700;
+  padding-left: 1.5rem;
+}
+
+.delete-project-btn {
+  background-color: #ff9c9c;
+  border-radius: 0.5rem;
+  margin: 1rem 0.5rem;
+  width: 4.8rem;
+  height: 2.5rem;
 }
 
 /*task container stuff here */
@@ -82,7 +119,7 @@ body {
   flex-direction: column;
   width: 70%;
   padding: 1rem 1rem;
-  background-color: lavenderblush;
+  background-color: whitesmoke;
 }
 
 #task-container-heading {
@@ -104,6 +141,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 1rem 1rem;
+  overflow:auto;
 }
 
 .left {
@@ -112,7 +150,6 @@ body {
   flex: 1;
   padding: 1rem 1rem;
   /* should make text wrap */
-  /* border: 2px solid black; */
 }
 
 .right {
@@ -125,6 +162,7 @@ body {
   align-items: center;
   border-radius: 1.2rem;
   height: 10%;
+  background: linear-gradient(45deg, pink, lightgoldenrodyellow, lavenderblush);
 }
 
 .task-text {
@@ -138,7 +176,6 @@ body {
 }
 
 .task-div:hover {
-  background-color: rgb(235, 235, 247);
   transform: scale(1.02);
 }
 
@@ -162,11 +199,14 @@ button {
   height: 5%;
 }
 
-button:hover,
-button:focus {
+button:hover {
   filter: brightness(90%);
   transform: scale(1.02);
   cursor: pointer;
+}
+
+button:focus {
+  filter: brightness(85%);
 }
 
 /* modal stuff here */
@@ -208,8 +248,8 @@ button:focus {
   background-color: rgb(230, 230, 250);
   border-radius: 1rem;
   border: 4px solid burlywood;
-  width: 60%;
-  height: 60%;
+  width: 50%;
+  height: 45%;
   padding: 2rem;
   position: fixed;
   left: 50vw;
@@ -241,14 +281,15 @@ button:focus {
 
 #label-date {
   margin-top: 2rem;
+  font-size: 1.6rem;
 }
 
-/*
-255,222,173,0.9
-dialog::backdrop{
-  background-color: (255,255,255,0.9);
+label {
+  font-size: 1.6rem;
 }
 
-input[type=text]{
-  height: 2rem;
-*/
+#task,
+#project-name,
+#edit-task {
+  font-size: 1.25rem;
+}

@@ -7,7 +7,7 @@ export default function updateDisplay() {
   // have a feeling it clears the display
   taskListContainer.textContent = '';
   for (const project of projectArray) {
-    if (project.clicked) {
+    if (project.clicked && project.name !== "Today" && project.name !== "This week") {
       createTaskDivs(project.tasks);
     }
   }
