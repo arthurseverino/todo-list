@@ -1,8 +1,6 @@
 ### Todo List
 
-This is my first CRUD app.
-
-It is a Todo List I made with HTML, CSS and Javascript.
+Hi, this is my Todo List I made with HTML, CSS and Javascript. It is my first CRUD app.
 
 You can view the app here:
 https://arthurseverino.github.io/todo-list/
